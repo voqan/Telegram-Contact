@@ -23,22 +23,14 @@ db = connect_mongo.myDB
 api_id = xxxxxx
 api_hash = 'FILL ME IN'
 
-#client = TelegramClient('arta0', api_id, api_hash)
-#client.connect()
 
 client = TelegramClient('/var/www/html/telegram/tracker', api_id, api_hash)
 client.start()
 
 contact = InputPhoneContact(client_id = 0, phone = prof, first_name=fname, last_name="")
-
-#result = client.invoke(ImportContactsRequest([contact], replace=True))
-
 result = client(ImportContactsRequest([contact]))
-#print (result)
-#jey= json.dumps(str(result))
-#jey= str(result)
 contacts = client(GetContactsRequest(0))
-#print (contacts)
+
 
 me = client.get_entity(prof)
 
